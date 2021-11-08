@@ -5,7 +5,13 @@ import {
 	QueryClientProvider,
 } from 'react-query'
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retry: false,
+		},
+	},
+});
 
 test('Does the useMovies Hook Return Intended Data For FilmWorld', async () => {
 	const matchData = {

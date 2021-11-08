@@ -1,15 +1,20 @@
 import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <StrictMode>
-    <ColorModeScript />
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <ColorModeScript />
+      <App />
+    </QueryClientProvider>
   </StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
-
-serviceWorker.unregister();
