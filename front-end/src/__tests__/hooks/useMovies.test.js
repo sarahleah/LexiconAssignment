@@ -13,6 +13,8 @@ const queryClient = new QueryClient({
 	},
 });
 
+jest.retryTimes(7)
+
 test('Does the useMovies Hook Return Intended Data For FilmWorld', async () => {
 	const matchData = {
 		data: {
@@ -30,8 +32,8 @@ test('Does the useMovies Hook Return Intended Data For FilmWorld', async () => {
  
 	const { result, waitFor } = renderHook(() => useMovies(), { wrapper });
 
-	await waitFor(() => result.current.filmworldMovies.isSuccess);
-	expect(result.current.filmworldMovies).toMatchObject(matchData);
+	await waitFor(() => result.current.filmWorldMovies.isSuccess);
+	expect(result.current.filmWorldMovies).toMatchObject(matchData);
 });
 
 test('Does the useMovies Hook Return Intended Data For CinemaWorld', async () => {
@@ -51,7 +53,7 @@ test('Does the useMovies Hook Return Intended Data For CinemaWorld', async () =>
  
 	const { result, waitFor } = renderHook(() => useMovies(), { wrapper });
 
-	await waitFor(() => result.current.cinemaworldMovies.isSuccess);
-	expect(result.current.cinemaworldMovies).toMatchObject(matchData);
+	await waitFor(() => result.current.cinemaWorldMovies.isSuccess);
+	expect(result.current.cinemaWorldMovies).toMatchObject(matchData);
 });
 

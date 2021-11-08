@@ -4,13 +4,10 @@ import {
   Box,
   theme,
 } from '@chakra-ui/react';
-import useMovies from './hooks/useMovies';
+import useCombinedMovies from './hooks/useCombinedMovies';
 
 function App() {
-  const { filmworldMovies, cinemaWorldMovies } = useMovies();
-
-  console.log(filmworldMovies, cinemaWorldMovies);
-
+  const data = useCombinedMovies();
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">

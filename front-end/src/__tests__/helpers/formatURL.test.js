@@ -1,4 +1,4 @@
-import {formatMoviesURL} from '../helpers/formatURL'
+import {formatMoviesURL} from '../../helpers/formatURL'
 
 
 test('Does the URL formatter Work with filmworld', () => {

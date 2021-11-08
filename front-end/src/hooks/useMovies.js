@@ -2,6 +2,6 @@ import { useQuery } from 'react-query';
 import fetchMovies from '../api/fetchMovies';
 
 export default () => ({
-  filmworldMovies: useQuery('filmworld', () => fetchMovies('filmworld')),
-  cinemaworldMovies: useQuery('cinemaworld', () => fetchMovies('cinemaworld')),
+  filmWorldMovies: useQuery('filmworld', () => fetchMovies('filmworld')),
+  cinemaWorldMovies: useQuery('cinemaworld', () => fetchMovies('cinemaworld')),
 });
