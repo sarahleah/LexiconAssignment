@@ -1,41 +1,43 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import { Box, Text, Image } from '@chakra-ui/react';
 import CardTable from './CardTable';
 
-const Card = ({ cinemas, movieTitle }) => (
-  <Box
-    bg="white"
-    maxW="xs"
-    minW="4xs"
-    borderWidth="1px"
-    borderRadius="lg"
-    overflow="hidden"
-    color="black"
-  >
-    <Box>
-      <Image src="https://via.placeholder.com/380" alt="" />
-    </Box>
+const Card = ({ movieData }) => {
+  return (
+    <Box
+      bg="white"
+      maxW="xs"
+      minW="4xs"
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      color="black"
+    >
+      <Box>
+        <Text data-testid="cardTitle" align="center" fontSize="2xl">
+          {movieData.title}
+        </Text>
+      </Box>
 
-    <Box>
-      <Text align="center" fontSize="2xl">
-        {movieTitle}
-      </Text>
-    </Box>
+      <Box>
+        <Image src={movieData.poster} alt="" />
+      </Box>
 
-    <CardTable
-      filmworld={cinemas.filmworld}
-      cinemaworld={cinemas.cinemaworld}
-    />
-  </Box>
-);
+      <CardTable
+        filmWorldPrice={movieData.prices[0]}
+        cinemaWorldPrice={movieData.prices[1]}
+      />
+    </Box>
+)};
 
 Card.propTypes = {
-  cinemas: PropTypes.shape({
-    filmWorld: PropTypes.object.isRequired,
-    cinemaWorld: PropTypes.object.isRequired,
+  movieData: propTypes.shape({
+    title: propTypes.string,
+    poster: propTypes.string, //Must be valid URL
+    actors: propTypes.string,
+    price: propTypes.array,
   }).isRequired,
-  movieTitle: PropTypes.string.isRequired,
 };
 
 export default Card;

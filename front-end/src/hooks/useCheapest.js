@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 
 const findCheapestCinema = (cinemas) => {
-  if (cinemas[0].price < cinemas[1].price) {
-    return cinemas[0];
-  }
-  return cinemas[1];
+	return cinemas.reduce((prev, curr) => {
+		return prev.price < curr.price ? prev : curr;
+	})
 };
 
 export default function useCheapest(...args) {

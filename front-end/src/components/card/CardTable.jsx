@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import {
   Box, Text, Badge, Center, HStack,
 } from '@chakra-ui/react';
 import useCheapest from '../../hooks/useCheapest';
 
-const CardTable = ({ filmWorld, cinemaWorld }) => {
-  const cheapest = useCheapest(filmWorld, cinemaWorld);
-
+const CardTable = ({ filmWorldPrice, cinemaWorldPrice }) => {
+  const cheapest = useCheapest(filmWorldPrice, cinemaWorldPrice);
   return (
     <Box>
       <Center>
@@ -16,10 +15,10 @@ const CardTable = ({ filmWorld, cinemaWorld }) => {
             Film World
           </Text>
           <Text>
-            {filmWorld.price}
+            {filmWorldPrice.price}
           </Text>
           <Center>
-            {cheapest === 0 && (
+            {cheapest.name === "Film World" && (
             <Badge data-testid="cin1Cheap" variant="solid" colorScheme="green">
               Cheap
             </Badge>
@@ -34,12 +33,14 @@ const CardTable = ({ filmWorld, cinemaWorld }) => {
             Cinema World
           </Text>
           <Text>
-            {cinemaWorld.price}
+            {cinemaWorldPrice.price}
           </Text>
           <Center>
-            <Badge data-testid="cin2Cheap" variant="solid" colorScheme="green">
-              Cheap
-            </Badge>
+						{cheapest.name === "Cinema World" && (
+							<Badge data-testid="cin2Cheap" variant="solid" colorScheme="green">
+								Cheap
+							</Badge>
+							)}
           </Center>
         </HStack>
       </Center>
@@ -48,8 +49,14 @@ const CardTable = ({ filmWorld, cinemaWorld }) => {
 };
 
 CardTable.propTypes = {
-  filmWorld: PropTypes.object.isRequired,
-  cinemaWorld: PropTypes.object.isRequired,
+  filmWorldPrice: propTypes.shape({
+		name: propTypes.string,
+		price: propTypes.number
+	}).isRequired,
+  cinemaWorldPrice: propTypes.shape({
+		name: propTypes.string,
+		price: propTypes.number
+	}).isRequired,
 };
 
 export default CardTable;

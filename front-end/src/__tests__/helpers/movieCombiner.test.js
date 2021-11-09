@@ -43,13 +43,28 @@ test('Should correctly combine movies of different providers', () => {
 			title: "movie1",
 			poster: "poster1",
 			actors: "actor1",
-			prices: [4, 5]
+			prices: [
+			{
+				name: "Cinema World",
+				price: 4
+			}, 
+			{
+				name: "Film World",
+				price: 5
+			}]
 		},
 		{
 			title: "movie2",
 			poster: "poster2",
 			actors: "actor2",
-			prices: [5, 6]
+			prices: [			{
+				name: "Cinema World",
+				price: 5
+			}, 
+			{
+				name: "Film World",
+				price: 6
+			}]
 		}
 	]
 	expect(movieCombiner(mockData)).toEqual(matchArray)
