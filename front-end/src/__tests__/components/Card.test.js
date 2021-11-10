@@ -108,3 +108,52 @@ describe('Title Displaying Correctly', () => {
 	})
 })
 
+describe('Price Rendering Correctly', () => {
+	test('Correct Price Displays on Film World', () => {
+		render(
+			<Card
+				movieData={{
+					title: "movie1",
+					poster: "poster1",
+					actors: "actor1",
+					prices: [
+						{
+							name: 'Film World',
+							price: 4.75
+						} ,
+						{
+							name: 'Cinema World',
+							price: 5.75
+						} 
+					]
+				}}/>
+		)
+
+		const { getByText } = within(screen.getByTestId('cin1Price'))
+		expect(getByText("$4.75"))
+	})
+
+	test('Correct Price Displays on Cinema World', () => {
+		render(
+			<Card
+				movieData={{
+					title: "movie1",
+					poster: "poster1",
+					actors: "actor1",
+					prices: [
+						{
+							name: 'Film World',
+							price: 4.75
+						} ,
+						{
+							name: 'Cinema World',
+							price: 5.75
+						} 
+					]
+				}}/>
+		)
+
+		const { getByText } = within(screen.getByTestId('cin2Price'))
+		expect(getByText("$5.75"))
+	})
+})

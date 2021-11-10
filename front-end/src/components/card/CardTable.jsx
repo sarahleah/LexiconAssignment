@@ -1,59 +1,44 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {
-  Box, Text, Badge, Center, HStack,
+  Box, Table, Tbody
 } from '@chakra-ui/react';
 import useCheapest from '../../hooks/useCheapest';
+import CardTableRow from './CardTableRow'
 
-const CardTable = ({ filmWorldPrice, cinemaWorldPrice }) => {
-  const cheapest = useCheapest(filmWorldPrice, cinemaWorldPrice);
+const CardTable = ({ filmWorld, cinemaWorld }) => {
+
+  const cheapest = useCheapest(filmWorld, cinemaWorld);
+
   return (
     <Box>
-      <Center>
-        <HStack>
-          <Text align="center" fontSize="lg">
-            Film World
-          </Text>
-          <Text>
-            {filmWorldPrice.price}
-          </Text>
-          <Center>
-            {cheapest.name === "Film World" && (
-            <Badge data-testid="cin1Cheap" variant="solid" colorScheme="green">
-              Cheap
-            </Badge>
-            )}
-          </Center>
-        </HStack>
-      </Center>
+			<Table>
+				<Tbody>
+					<CardTableRow
+						testid="cin1"
+						name={filmWorld.name}
+						price={filmWorld.price}
+						isCheapest={cheapest.name === filmWorld.name}
+					/>
 
-      <Center>
-        <HStack>
-          <Text align="center" fontSize="lg">
-            Cinema World
-          </Text>
-          <Text>
-            {cinemaWorldPrice.price}
-          </Text>
-          <Center>
-						{cheapest.name === "Cinema World" && (
-							<Badge data-testid="cin2Cheap" variant="solid" colorScheme="green">
-								Cheap
-							</Badge>
-							)}
-          </Center>
-        </HStack>
-      </Center>
+					<CardTableRow 
+						testid="cin2"
+						name={cinemaWorld.name}
+						price={cinemaWorld.price}
+						isCheapest={cheapest.name === cinemaWorld.name}
+					/>
+				</Tbody>
+			</Table>
     </Box>
   );
 };
 
 CardTable.propTypes = {
-  filmWorldPrice: propTypes.shape({
+  filmWorld: propTypes.shape({
 		name: propTypes.string,
 		price: propTypes.number
 	}).isRequired,
-  cinemaWorldPrice: propTypes.shape({
+  cinemaWorld: propTypes.shape({
 		name: propTypes.string,
 		price: propTypes.number
 	}).isRequired,

@@ -37,7 +37,7 @@ const CardContainer = () => {
 	return ( 
 		<Box>
 			<Center>
-				<SimpleGrid columns={{ base: 2, sm: 2, md: 3, lg: 4, xl: 5 }} gap={6}>
+				<SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} gap={6}>
 					{generateMovieCards(data)}
 				</SimpleGrid>
 			</Center>

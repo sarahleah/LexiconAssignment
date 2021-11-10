@@ -15,3 +15,18 @@ test('Hook should correctly return the cinema with the cheapest option', () => {
 
 	expect(result.current.name).toEqual("cinemaworld")
 })
+
+test('Hook should correctly return the cinema with the cheapest option ofr filmworld', () => {
+	const { result } = renderHook(() => useCheapest(
+	{
+		name: "filmworld",
+		price: 6
+	},
+	{
+		name: "cinemaworld",
+		price: 10
+	}
+	)) 
+
+	expect(result.current.name).toEqual("filmworld")
+})

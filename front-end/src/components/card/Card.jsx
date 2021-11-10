@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Box, Text, Image } from '@chakra-ui/react';
+import { Box, Text, Image, Center } from '@chakra-ui/react';
 import CardTable from './CardTable';
 
 const Card = ({ movieData }) => {
@@ -8,25 +8,30 @@ const Card = ({ movieData }) => {
     <Box
       bg="white"
       maxW="xs"
-      minW="4xs"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
       color="black"
     >
-      <Box>
-        <Text data-testid="cardTitle" align="center" fontSize="2xl">
+      <Box minH={20} mt={2}>
+        <Text 
+          fontWeight="bold"
+          data-testid="cardTitle" 
+          align="center" 
+          fontSize="2xl">
           {movieData.title}
         </Text>
       </Box>
 
-      <Box>
-        <Image src={movieData.poster} alt="" />
+      <Box minH={465}>
+        <Center>
+          <Image src={movieData.poster} alt="" />
+        </Center>
       </Box>
 
       <CardTable
-        filmWorldPrice={movieData.prices[0]}
-        cinemaWorldPrice={movieData.prices[1]}
+        filmWorld={movieData.prices[0]}
+        cinemaWorld={movieData.prices[1]}
       />
     </Box>
 )};

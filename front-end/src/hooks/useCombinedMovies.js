@@ -2,9 +2,9 @@ import useMovies from './useMovies';
 import movieCombiner from '../helpers/movieCombiner'
 
 export default function useCombinedMovies() {
-	const { filmWorldMovies, cinemaWorldMovies} = useMovies()
+	const { filmWorldMovies, cinemaWorldMovies } = useMovies()
 	
-	if (filmWorldMovies.isError || cinemaWorldMovies.isError){
+	if ([filmWorldMovies, cinemaWorldMovies].some((provider) => provider.isError)){
 		return {
 			isSuccess: false,
 			isError: true,
@@ -12,7 +12,7 @@ export default function useCombinedMovies() {
 			data: undefined
 		}
 	}
-	else if (filmWorldMovies.isLoading || cinemaWorldMovies.isLoading){
+	else if ([filmWorldMovies, cinemaWorldMovies].some((provider) => provider.isLoading)){
 		return {
 			isSuccess: false,
 			isError: false,
